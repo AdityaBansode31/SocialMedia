@@ -1,0 +1,4 @@
+# General ignores for the whole project
+.vs/
+*.log
+.DS_Store
