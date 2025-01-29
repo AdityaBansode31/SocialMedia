@@ -1,23 +1,28 @@
-import { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { createContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate();
+  const [user, setUser] = useState(() => {
+    return JSON.parse(localStorage.getItem("user")) || null;
+  });
 
-  const login = (data) => {
-    localStorage.setItem("token", data.token);
-    setUser({ role: data.role, userId: data.userId });
-    navigate("/posts");
+  const login = (userData) => {
+    localStorage.setItem("user", JSON.stringify(userData)); // Store token
+    setUser(userData);
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("user"); // Clear token
     setUser(null);
-    navigate("/login");
   };
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>

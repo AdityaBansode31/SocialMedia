@@ -1,14 +1,14 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5261/api", // Replace with your backend URL
+  baseURL: "http://localhost:5261/api",
 });
 
-// Add a request interceptor to include the token
+// Attach token to requests
 API.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (user?.token) {
+    config.headers.Authorization = `Bearer ${user.token}`;
   }
   return config;
 });
