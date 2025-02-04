@@ -1,0 +1,38 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #000;
+  padding: 16px 20px;
+  border-bottom: 1px solid #262626;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .header-icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    svg {
+      font-size: 20px;
+      color: #fff;
+      cursor: pointer;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+}

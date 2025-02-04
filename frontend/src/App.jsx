@@ -5,6 +5,7 @@ import RegistrationForm from "./components/RegistrationForm";
 import LoginForm from "./components/LoginForm";
 import PostsPage from "./components/PostsPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import CreatePost from "./components/CreatePost";
 
 const App = () => {
   return (
@@ -20,6 +21,14 @@ const App = () => {
                 <PostsPage />
               </ProtectedRoute>
             }
+          />
+          <Route
+            path="/create"
+            element={
+              <ProtectedRoute>
+                <CreatePost />
+              </ProtectedRoute>
+            }     
           />
         </Routes>
       </AuthProvider>
